@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './App.scss';
+import Routes from './Routes';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Store } from './shared/store/Store';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Store>
+      <HelmetProvider >
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>React admin panel</title>
+          <link rel="canonical" href={`/`} />
+          <base href={window.location.pathname} target="_blank" />
+        </Helmet>
+        <Routes />
+      </HelmetProvider>
+    </Store>
   );
 }
 

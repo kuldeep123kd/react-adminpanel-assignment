@@ -1,0 +1,22 @@
+.adminlogin {
+  font-size: 2rem;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+  h1 {
+    margin-bottom: 2rem;
+  }
+  .MuiTextField-root {
+    width: 100%;
+  }
+}
+
+
+.adminlogin__textfield {
+  margin: 20px 0;
+}
+
+.error {
+  color: #f44336;
+  font-size: 1rem;
+}
