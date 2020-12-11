@@ -55,7 +55,7 @@ export const Store = props => {
       organization: organization
     };
     if(token) {
-      Axios.post('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/employees.json?auth=' + token, employeesData)
+      Axios.post(`${process.env.REACT_APP_DATABASEURL}/employees.json?auth=` + token, employeesData)
       .then(res => {
         console.log(res);
       })
@@ -68,7 +68,7 @@ export const Store = props => {
   const employeesData = () => {
     let token = localStorage.getItem("authToken");
     if(token) {
-      Axios.get('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/employees.json?auth=' + token)
+      Axios.get(`${process.env.REACT_APP_DATABASEURL}/employees.json?auth=` + token)
       .then(res => {
           if (res.status === 200) {
             const data = res.data;
@@ -91,7 +91,7 @@ export const Store = props => {
       description: description,
     };
     if(token) {
-      Axios.post('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/roles.json?auth=' + token, rolesData)
+      Axios.post(`${process.env.REACT_APP_DATABASEURL}/roles.json?auth=` + token, rolesData)
       .then(res => {
         console.log(res);
       })
@@ -104,7 +104,7 @@ export const Store = props => {
   const roleData = () => {
     let token = localStorage.getItem("authToken");
     if(token) {
-      Axios.get('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/roles.json?auth=' + token)
+      Axios.get(`${process.env.REACT_APP_DATABASEURL}/roles.json?auth=` + token)
       .then(res => {
         if (res.status === 200) {
           const data = res.data;
@@ -125,7 +125,7 @@ export const Store = props => {
       description: description,
     };
     if(token) {
-      Axios.post('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/organizations.json?auth=' + token, organizationData)
+      Axios.post(`${process.env.REACT_APP_DATABASEURL}/organizations.json?auth=` + token, organizationData)
       .then(res => {
         console.log(res);
       })
@@ -138,7 +138,7 @@ export const Store = props => {
   const organizationData = () => {
     let token = localStorage.getItem("authToken");
     if(token) {
-      Axios.get('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/organizations.json?auth=' + token)
+      Axios.get(`${process.env.REACT_APP_DATABASEURL}/organizations.json?auth=` + token)
       .then(res => {
         if (res.status === 200) {
           const data = res.data;
