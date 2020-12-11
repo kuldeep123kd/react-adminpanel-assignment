@@ -1,4 +1,5 @@
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
+import "firebase/database";
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,3 +12,10 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+const projectData = firebase.database();
+// const projectFireStore = firebase.firestore();
+// const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+
+export { projectData };

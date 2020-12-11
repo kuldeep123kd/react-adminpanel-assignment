@@ -5,17 +5,25 @@ import './AddEmployees.scss';
 import { Link, Redirect } from 'react-router-dom';
 import InnerNavbar from '../InnerNavbar';
 import Sidebar from '../Sidebar';
+import Alert from '@material-ui/lab/Alert';
 
 const DeleteUsers = () => {
 
   const {isLogout} = React.useContext(Context);
 
-  const {employeesData, empData} = React.useContext(Context);
+  const {employeesData, empData, employeesDelete, dataDelete, setDataDelete} = React.useContext(Context);
   let token = localStorage.getItem("authToken");
 
   React.useEffect(() => {
     employeesData();
-  },[]);
+  },[employeesData]);
+
+  const deleteUser = (id) => {
+    employeesDelete(id);
+    setTimeout(() => {
+      setDataDelete(false);
+    }, 5000);
+  }
 
   if(!isLogout || token) {
     return ( 
@@ -24,11 +32,12 @@ const DeleteUsers = () => {
         <div className="homepage__maincontent">
           <InnerNavbar />
           <div className="homepage__maincontent__addemployees">
-            <h1>Delete Users</h1>
+            {dataDelete && <Alert severity="success">User deleted successfully.</Alert>}
             <div>
             {
                 empData ? 
                   <div className="homepage__maincontent__employees__table">
+                    <h1>Delete Users</h1>
                     <table>
                       <tbody>
                         <tr>
@@ -46,7 +55,7 @@ const DeleteUsers = () => {
                                 <td>{empData[data].email}</td>
                                 <td>{empData[data].role}</td>
                                 <td>{empData[data].organization}</td>
-                                <td className="text-center"><img src={deleteimg} alt="deleteimg" /></td>
+                                <td className="text-center"><img onClick={() => {deleteUser(data)}} src={deleteimg} alt="deleteimg" /></td>
                               </tr>
                             )
                           })

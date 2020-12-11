@@ -20,11 +20,11 @@ const ListRole = () => {
           <div className="homepage__maincontent">
             <InnerNavbar />
             <div className="homepage__maincontent__addemployees">
-              <h1>Roles List</h1>
               <div>
                 {
                   rolData ? 
                     <div className="homepage__maincontent__employees__table">
+                      <h1>Roles List</h1>
                       <table>
                         <tbody>
                           <tr>

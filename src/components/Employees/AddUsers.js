@@ -125,11 +125,18 @@ const AddUsers = () => {
                     helperText="Please select role"
                     variant="outlined"
                   >
-                    {Object.keys(rolData).map((option, key) => (
-                      <MenuItem key={key} value={rolData[option].name}>
-                        {rolData[option].name}
+                    {
+                      rolData ? 
+                      Object.keys(rolData).map((option, key) => (
+                        <MenuItem key={key} value={rolData[option].name}>
+                          {rolData[option].name}
+                        </MenuItem>
+                      ))
+                      :
+                      <MenuItem value="demo">
+                        {"demo"}
                       </MenuItem>
-                    ))}
+                    }
                   </TextField>
                   {
                     addEmployess.roleError && <span className="error">Please select role</span>
@@ -145,11 +152,18 @@ const AddUsers = () => {
                     helperText="Please select organization"
                     variant="outlined"
                   >
-                    {Object.keys(organsData).map((option, key) => (
-                      <MenuItem key={key} value={organsData[option].name}>
-                        {organsData[option].name}
+                    {
+                      organsData ? 
+                      Object.keys(organsData).map((option, key) => (
+                        <MenuItem key={key} value={organsData[option].name}>
+                          {organsData[option].name}
+                        </MenuItem>
+                      ))
+                      :
+                      <MenuItem value="demo">
+                        {"demo"}
                       </MenuItem>
-                    ))}
+                    }
                   </TextField>
                   {
                     addEmployess.organizationError && <span className="error">Please select organization</span>
