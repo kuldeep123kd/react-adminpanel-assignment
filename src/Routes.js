@@ -14,7 +14,7 @@ import DeleteOrganization from './components/Organizations/DeleteOrganization';
 
 const Routes = () => {
 
-  const {DeleteToken, setIsAuthenticated} = React.useContext(Context);
+  const {DeleteToken, setIsAuthenticated, setIsLogout} = React.useContext(Context);
 
   let token = localStorage.getItem("authToken");
   React.useEffect(() => {
@@ -23,9 +23,10 @@ const Routes = () => {
       setTimeout(() => {
         DeleteToken();
         setIsAuthenticated(false);
+        setIsLogout(true);
       }, expireationTime * 1000);
     }
-  },[DeleteToken, token, setIsAuthenticated]);
+  },[DeleteToken, token, setIsAuthenticated, setIsLogout]);
 
   return (
     <>
