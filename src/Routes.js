@@ -1,9 +1,16 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
-import Header from './components/Header/Header';
-import Home from './components/Home';
+import ListRole from './components/Roles/ListRole';
+import ListOrganization from './components/Organizations/ListOrganization';
+import AddOrganization from './components/Organizations/AddOrganization';
+import AddRole from './components/Roles/AddRole';
 import Login from './components/Login/Login';
 import { Context } from './shared/store/Context';
+import ListUsers from './components/Employees/ListUsers';
+import DeleteUsers from './components/Employees/DeleteUsers';
+import AddUsers from './components/Employees/AddUsers';
+import DeleteRole from './components/Roles/DeleteRole';
+import DeleteOrganization from './components/Organizations/DeleteOrganization';
 
 const Routes = () => {
 
@@ -22,9 +29,16 @@ const Routes = () => {
 
   return (
     <>
-    <Header />
       <Switch>
-        <Route path="/home" component={Home} />
+        <Route path="/listusers" component={ListUsers} />
+        <Route path="/deleteusers" component={DeleteUsers} />
+        <Route path="/deleteroles" component={DeleteRole} />
+        <Route path="/deleteorganization" component={DeleteOrganization} />
+        <Route path="/listroles" component={ListRole} />
+        <Route path="/listorganizations" component={ListOrganization} />
+        <Route path="/addusers" component={AddUsers} />
+        <Route path="/addroles" component={AddRole} />
+        <Route path="/addorganization" component={AddOrganization} />
         <Route exact path="/" component={Login} />
       </Switch>
     </>

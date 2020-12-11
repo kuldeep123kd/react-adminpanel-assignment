@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import './Login.scss';
 import { Context } from '../../shared/store/Context';
 import { Redirect } from 'react-router-dom';
+import Header from '../Header/Header';
 
 const initialState = {
   email: '',
@@ -33,12 +34,13 @@ const Login = () => {
   }
 
   if (isAuthenticated || token) {
-    return <Redirect to={`/home`} />
+    return <Redirect to={`/addusers`} />
   }
 
   return (
     <>
       {red()}
+      <Header />
       <div className="adminlogin">
         <h1>Admin Login</h1>
         <form onSubmit={formSubmit}>

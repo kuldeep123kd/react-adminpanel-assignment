@@ -1,7 +1,97 @@
 .loggedout {
-    margin: 10% auto;
-    text-align: center;
-    a {
-        font-size: 2rem;
+  margin: 10% auto;
+  text-align: center;
+  a {
+    font-size: 2rem;
+  }
+}
+
+.homepage {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.homepage__sidebar__logo {
+  background: rgba(0,0,21,.2);
+}
+
+.homepage__sidebar__content {
+  h1 {
+    margin: 0;
+    font-size: 1.0625rem;
+    color: #FFFFFF;
+    font-weight: 500;
+    padding: 10px 15px;
+  }
+}
+
+.active {
+  background-color: #007bff;
+}
+
+.homepage__sidebar__logo,
+.header__padding {
+  padding: 10px 15px;
+}
+
+.header__padding {
+  padding-bottom: 12px;
+}
+
+.homepage__sidebar {
+  width: 256px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  flex: 0 0 256px;
+  flex-direction: column;
+  order: -1;
+  background-color: #3c4b64;
+  a {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    &:hover {
+      color: #FFFFFF;
+      text-decoration: none;
     }
+  }
+}
+
+.homepage__sidebar__content ul li {
+  color: #FFFFFF;
+  cursor: pointer;
+  &:hover {
+    background-color: #007bff;
+  }
+  a {
+    font-size: 1rem;
+    display: block;
+    padding: 8px 30px;
+  }
+}
+
+.header__position {
+  position: sticky;
+  top: 0;
+}
+
+.homepage__maincontent {
+  width: 100%;
+  margin-left: 256px;
+}
+
+.homepage__maincontent__addemployees__form {
+  max-width: 300px;
+  margin: auto;
+}
+
+.MuiFormControl-root {
+  width: 100%;
+}
+.homepage__maincontent__addemployees__form__inputs {
+  margin: 20px 0;
 }
