@@ -4,14 +4,22 @@ import { Context } from '../../shared/store/Context';
 import InnerNavbar from '../InnerNavbar';
 import deleteimg from '../../assets/images/trash.svg';
 import Sidebar from '../Sidebar';
+import Alert from '@material-ui/lab/Alert';
 
 const DeleteRole = () => {
-  const {isLogout, roleData, rolData} = React.useContext(Context);
+  const {isLogout, roleData, rolData, dataDelete, rolesDelete, setDataDelete} = React.useContext(Context);
   let token = localStorage.getItem("authToken");
 
   React.useEffect(() => {
     roleData();
-  },[]);
+  },[roleData]);
+
+  const deleteRol = (id) => {
+    rolesDelete(id);
+    setTimeout(() => {
+      setDataDelete(false);
+    }, 5000);
+  }
 
   if(!isLogout || token) {
     return (
@@ -21,11 +29,12 @@ const DeleteRole = () => {
           <div className="homepage__maincontent">
             <InnerNavbar />
             <div className="homepage__maincontent__addemployees">
-              <h1>Delete Roles</h1>
+            {dataDelete && <Alert severity="success">Role deleted successfully.</Alert>}
               <div>
                 {
                   rolData ? 
                     <div className="homepage__maincontent__employees__table">
+                      <h1>Delete Roles</h1>
                       <table>
                         <tbody>
                           <tr>
@@ -39,7 +48,7 @@ const DeleteRole = () => {
                                 <tr key={key}>
                                   <td>{rolData[data].name}</td>
                                   <td>{rolData[data].description}</td>
-                                  <td className="text-center"><img src={deleteimg} alt="deleteimg" /></td>
+                                  <td className="text-center"><img onClick={() => {deleteRol(data)}} src={deleteimg} alt="deleteimg" /></td>
                                 </tr>
                               )
                             })

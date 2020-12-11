@@ -34,23 +34,20 @@ tr:nth-child(even) {
   }
 }
 
-.homepage__maincontent__addemployees {
-  padding-top: 50px;
-  h1 {
-    margin: 0;
-    color: #000000;
-    margin: 0;
-    font-size: 1.125rem;
-    padding-left: 15px;
-  }
-}
-
 .homepage__maincontent__employees__data {
   padding: 15px;
 }
 
 .homepage__maincontent__employees__table {
   padding: 20px 15px;
+  padding-top: 50px;
+  h1 {
+    margin: 0;
+    color: #000000;
+    margin: 0;
+    font-size: 1.125rem;
+    padding-bottom: 15px;
+  }
 }
 
 .homepage__maincontent__addemployees__users__notfound {
@@ -64,4 +61,9 @@ tr:nth-child(even) {
     margin: 0;
     padding-bottom: 15px;
   }
+}
+
+.error__heading {
+  margin: 0;
+  padding: 20px 15px;
 }

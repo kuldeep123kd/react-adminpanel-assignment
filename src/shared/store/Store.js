@@ -8,6 +8,7 @@ export const Store = props => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const [isLogout, setIsLogout] = React.useState(false);
   const [loginError, setLoginError] = React.useState(false);
+  const [dataDelete, setDataDelete] = React.useState(false);
   const [empData, setEmpData] = React.useState([]);
   const [rolData, setRolData] = React.useState([]);
   const [organsData, setOrgansData] = React.useState([]);
@@ -78,7 +79,7 @@ export const Store = props => {
       .catch(err => {
         console.log(err.response);
         if (err.response.status === 401) {
-          DeleteToken();
+          // DeleteToken();
         }
       })
     }
@@ -151,8 +152,65 @@ export const Store = props => {
     }
   }
 
+  const employeesDelete = (id) => {
+    let token = localStorage.getItem("authToken");
+
+    if(token) {
+      Axios.delete(`${process.env.REACT_APP_DATABASEURL}/employees/${id}.json?auth=` + token,)
+      .then(res => {
+          if (res.status === 200) {
+            setDataDelete(true);
+          }
+      })
+      .catch(err => {
+        console.log(err.response);
+        if (err.response.status === 401) {
+          // DeleteToken();
+        }
+      })
+    }
+  }
+
+  const rolesDelete = (id) => {
+    let token = localStorage.getItem("authToken");
+
+    if(token) {
+      Axios.delete(`${process.env.REACT_APP_DATABASEURL}/roles/${id}.json?auth=` + token,)
+      .then(res => {
+          if (res.status === 200) {
+            setDataDelete(true);
+          }
+      })
+      .catch(err => {
+        console.log(err.response);
+        if (err.response.status === 401) {
+          // DeleteToken();
+        }
+      })
+    }
+  }
+
+  const organizationDelete = (id) => {
+    let token = localStorage.getItem("authToken");
+
+    if(token) {
+      Axios.delete(`${process.env.REACT_APP_DATABASEURL}/organizations/${id}.json?auth=` + token,)
+      .then(res => {
+          if (res.status === 200) {
+            setDataDelete(true);
+          }
+      })
+      .catch(err => {
+        console.log(err.response);
+        if (err.response.status === 401) {
+          // DeleteToken();
+        }
+      })
+    }
+  }
+
   return (
-    <Context.Provider value={{Auth, setIsAuthenticated, isAuthenticated, DeleteToken, loginError, employeesSubmit, setIsLogout, isLogout, employeesData, empData, rolesSubmit, roleData, rolData, organizationSubmit, organizationData, organsData}}> 
+    <Context.Provider value={{Auth, setIsAuthenticated, isAuthenticated, DeleteToken, loginError, employeesSubmit, setIsLogout, isLogout, employeesData, empData, rolesSubmit, roleData, rolData, organizationSubmit, organizationData, organsData, employeesDelete, dataDelete, organizationDelete, rolesDelete, setDataDelete}}> 
       {props.children}
     </Context.Provider>
   );

@@ -20,11 +20,11 @@ const ListOrganization = () => {
           <div className="homepage__maincontent">
             <InnerNavbar />
             <div className="homepage__maincontent__addemployees">
-              <h1>Organization List</h1>
               <div>
                 {
                   organsData ? 
                     <div className="homepage__maincontent__employees__table">
+                      <h1>Organization List</h1>
                       <table>
                         <tbody>
                           <tr>

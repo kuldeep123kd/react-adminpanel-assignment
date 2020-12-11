@@ -23,11 +23,11 @@ const ListUsers = () => {
         <div className="homepage__maincontent">
           <InnerNavbar />
           <div className="homepage__maincontent__addemployees">
-            <h1>Users List</h1>
             <div>
               {
                 empData ? 
                   <div className="homepage__maincontent__employees__table">
+                    <h1>Users List</h1>
                     <table>
                       <tbody>
                         <tr>
