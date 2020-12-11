@@ -6,7 +6,11 @@ import { Context } from './Context';
 export const Store = props => {
 
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [isLogout, setIsLogout] = React.useState(false);
   const [loginError, setLoginError] = React.useState(false);
+  const [empData, setEmpData] = React.useState([]);
+  const [rolData, setRolData] = React.useState([]);
+  const [organsData, setOrgansData] = React.useState([]);
 
   const Auth = (email, password) => {
 
@@ -42,8 +46,113 @@ export const Store = props => {
     }
   }
 
+  const employeesSubmit = (name, email, role, organization) => {
+    let token = localStorage.getItem("authToken");
+    const employeesData = {
+      name: name,
+      email: email,
+      role: role,
+      organization: organization
+    };
+    if(token) {
+      Axios.post('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/employees.json?auth=' + token, employeesData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response);
+      })
+    }
+  }
+
+  const employeesData = () => {
+    let token = localStorage.getItem("authToken");
+    if(token) {
+      Axios.get('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/employees.json?auth=' + token)
+      .then(res => {
+          if (res.status === 200) {
+            const data = res.data;
+            setEmpData(data);
+          }
+      })
+      .catch(err => {
+        console.log(err.response);
+        if (err.response.status === 401) {
+          DeleteToken();
+        }
+      })
+    }
+  }
+
+  const rolesSubmit = (name, description) => {
+    let token = localStorage.getItem("authToken");
+    const rolesData = {
+      name: name,
+      description: description,
+    };
+    if(token) {
+      Axios.post('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/roles.json?auth=' + token, rolesData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response);
+      })
+    }
+  }
+
+  const roleData = () => {
+    let token = localStorage.getItem("authToken");
+    if(token) {
+      Axios.get('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/roles.json?auth=' + token)
+      .then(res => {
+        if (res.status === 200) {
+          const data = res.data;
+          setRolData(data);
+        }
+      })
+      .catch(err => {
+        console.log(err.response);
+      })
+    }
+  }
+
+  const organizationSubmit = (name, organizationSize, description) => {
+    let token = localStorage.getItem("authToken");
+    const organizationData = {
+      name: name,
+      organizationSize: organizationSize,
+      description: description,
+    };
+    if(token) {
+      Axios.post('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/organizations.json?auth=' + token, organizationData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response);
+      })
+    }
+  }
+
+  const organizationData = () => {
+    let token = localStorage.getItem("authToken");
+    if(token) {
+      Axios.get('https://react-adminpanel-bb782-default-rtdb.firebaseio.com/organizations.json?auth=' + token)
+      .then(res => {
+        if (res.status === 200) {
+          const data = res.data;
+          setOrgansData(data);
+        }
+      })
+      .catch(err => {
+        console.log(err.response);
+      })
+    }
+  }
+
   return (
-    <Context.Provider value={{Auth, setIsAuthenticated, isAuthenticated, DeleteToken, loginError}}> 
+    <Context.Provider value={{Auth, setIsAuthenticated, isAuthenticated, DeleteToken, loginError, employeesSubmit, setIsLogout, isLogout, employeesData, empData, rolesSubmit, roleData, rolData, organizationSubmit, organizationData, organsData}}> 
       {props.children}
     </Context.Provider>
   );
