@@ -5,9 +5,10 @@ import InnerNavbar from '../InnerNavbar';
 import deleteimg from '../../assets/images/trash.svg';
 import Sidebar from '../Sidebar';
 import Alert from '@material-ui/lab/Alert';
+import { CircularProgress } from '@material-ui/core';
 
 const DeleteRole = () => {
-  const {isLogout, roleData, rolData, dataDelete, rolesDelete, setDataDelete} = React.useContext(Context);
+  const {isLogout, roleData, rolData, dataDelete, rolesDelete, setDataDelete, isLoading} = React.useContext(Context);
   let token = localStorage.getItem("authToken");
 
   React.useEffect(() => {
@@ -30,32 +31,44 @@ const DeleteRole = () => {
             <InnerNavbar />
             <div className="homepage__maincontent__addemployees">
             {dataDelete && <Alert severity="success">Role deleted successfully.</Alert>}
-              <div>
+              <div className="homepage__maincontent__employees__table__parent">
                 {
                   rolData ? 
+                  <>
+                    <h1>Delete Roles</h1>
                     <div className="homepage__maincontent__employees__table">
-                      <h1>Delete Roles</h1>
-                      <table>
-                        <tbody>
-                          <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Delete Role</th>
-                          </tr>
-                          {
-                            Object.keys(rolData).map((data, key) => {
-                              return (
-                                <tr key={key}>
-                                  <td>{rolData[data].name}</td>
-                                  <td>{rolData[data].description}</td>
-                                  <td className="text-center"><img onClick={() => {deleteRol(data)}} src={deleteimg} alt="deleteimg" /></td>
-                                </tr>
-                              )
-                            })
-                          }
-                        </tbody>
-                      </table>
+                    {
+                      !isLoading ? (
+                        <table>
+                          <tbody>
+                            <tr>
+                              <th>Name</th>
+                              <th>Description</th>
+                              <th>Delete Role</th>
+                            </tr>
+                            {
+                              Object.keys(rolData).map((data, key) => {
+                                return (
+                                  <tr key={key}>
+                                    <td>{rolData[data].name}</td>
+                                    <td>{rolData[data].description}</td>
+                                    <td className="text-center"><img onClick={() => {deleteRol(data)}} src={deleteimg} alt="deleteimg" /></td>
+                                  </tr>
+                                )
+                              })
+                            }
+                          </tbody>
+                        </table>
+                      )
+                      :
+                      (
+                        <div className="progress__loader">
+                          <CircularProgress />
+                        </div>
+                      )
+                    }
                     </div>
+                  </>
                   :
                     <div className='homepage__maincontent__addemployees__users__notfound'>
                       <h2>Data not found</h2>

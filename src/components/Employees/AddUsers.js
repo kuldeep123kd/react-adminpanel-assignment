@@ -5,6 +5,7 @@ import { Context } from '../../shared/store/Context';
 import '../Home.scss';
 import Sidebar from '../Sidebar';
 import InnerNavbar from '../InnerNavbar';
+import Alert from '@material-ui/lab/Alert';
 
 const initialState = {
   email: '',
@@ -20,7 +21,7 @@ const initialState = {
 
 const AddUsers = () => {
 
-  const {isLogout, rolData, employeesSubmit, organsData, organizationData, roleData} = React.useContext(Context);
+  const {isLogout, rolData, employeesSubmit, organsData, organizationData, roleData, formSuccess, setFormSuccess} = React.useContext(Context);
 
   const [addEmployess, setAddEmployees] = React.useState(initialState);
 
@@ -67,13 +68,17 @@ const AddUsers = () => {
     const isValid = formValidation();
     if(isValid) {
       employeesSubmit(addEmployess.name, addEmployess.email, addEmployess.role, addEmployess.organization);
+      setTimeout(() => {
+        setFormSuccess(false);
+        setAddEmployees({...addEmployess,...initialState});
+      }, 3000);
     }
   }
 
   React.useEffect(() => {
     organizationData();
     roleData();
-  },[])
+  },[organizationData, roleData]);
 
   let token = localStorage.getItem("authToken");
 
@@ -86,6 +91,7 @@ const AddUsers = () => {
           <div className="homepage__maincontent__addemployees">
             <div>
               <div className="homepage__maincontent__addemployees__heading">
+                {formSuccess && <Alert severity="success">User added successfully.</Alert>}
                 <h2>Add User</h2>
               </div>
               <form onSubmit={formSubmit} className="homepage__maincontent__addemployees__form">

@@ -9,6 +9,7 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-size: 0.875rem;
 }
 
 td {
@@ -38,7 +39,7 @@ tr:nth-child(even) {
   padding: 15px;
 }
 
-.homepage__maincontent__employees__table {
+.homepage__maincontent__employees__table__parent {
   padding: 20px 15px;
   padding-top: 50px;
   h1 {
@@ -48,6 +49,11 @@ tr:nth-child(even) {
     font-size: 1.125rem;
     padding-bottom: 15px;
   }
+}
+
+.homepage__maincontent__employees__table {
+  overflow-x: auto;
+  
 }
 
 .homepage__maincontent__addemployees__users__notfound {
@@ -66,4 +72,9 @@ tr:nth-child(even) {
 .error__heading {
   margin: 0;
   padding: 20px 15px;
+}
+
+.progress__loader {
+  text-align: center;
+  padding: 10%;
 }

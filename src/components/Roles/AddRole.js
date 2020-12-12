@@ -5,6 +5,7 @@ import { Context } from '../../shared/store/Context';
 import '../Home.scss';
 import Sidebar from '../Sidebar';
 import InnerNavbar from '../InnerNavbar';
+import Alert from '@material-ui/lab/Alert';
 
 const initialState = {
   name: '',
@@ -16,7 +17,7 @@ const initialState = {
 
 const AddRole = () => {
 
-  const {isLogout, rolesSubmit} = React.useContext(Context);
+  const {isLogout, rolesSubmit, formSuccess, setFormSuccess} = React.useContext(Context);
 
   const [addRoles, setRoles] = React.useState(initialState);
 
@@ -44,6 +45,10 @@ const AddRole = () => {
     const isValid = formValidation();
     if(isValid) {
       rolesSubmit(addRoles.name, addRoles.description);
+      setTimeout(() => {
+        setFormSuccess(false);
+        setRoles({...addRoles,...initialState});
+      }, 3000);
     }
   }
 
@@ -58,6 +63,7 @@ const AddRole = () => {
           <div className="homepage__maincontent__addemployees"> 
             <div>
               <div className="homepage__maincontent__addemployees__heading">
+                {formSuccess && <Alert severity="success">Role added successfully.</Alert>}
                 <h2>Add Role</h2>
               </div>
               <form onSubmit={formSubmit} className="homepage__maincontent__addemployees__form">

@@ -5,9 +5,10 @@ import deleteimg from '../../assets/images/trash.svg';
 import InnerNavbar from '../InnerNavbar';
 import Sidebar from '../Sidebar';
 import Alert from '@material-ui/lab/Alert';
+import { CircularProgress } from '@material-ui/core';
 
 const DeleteOrganization = () => {
-  const {isLogout, organizationData, organsData, dataDelete, organizationDelete, setDataDelete} = React.useContext(Context);
+  const {isLogout, organizationData, organsData, dataDelete, organizationDelete, setDataDelete, isLoading} = React.useContext(Context);
   let token = localStorage.getItem("authToken");
 
   React.useEffect(() => {
@@ -30,34 +31,47 @@ const DeleteOrganization = () => {
             <InnerNavbar />
             <div className="homepage__maincontent__addemployees">
               {dataDelete && <Alert severity="success">Role deleted successfully.</Alert>}
-              <div>
+              <div className="homepage__maincontent__employees__table__parent">
                 {
-                  organsData ? 
+                  organsData ?
+                  <>
+                    <h1>Delete Organization</h1>
                     <div className="homepage__maincontent__employees__table">
-                      <h1>Delete Organization</h1>
-                      <table>
-                        <tbody>
-                          <tr>
-                            <th>Name</th>
-                            <th>Size of Organization Unit</th>
-                            <th>Description</th>
-                            <th>Delete Organization</th>
-                          </tr>
-                          {
-                            Object.keys(organsData).map((data, key) => {
-                              return (
-                                <tr key={key}>
-                                  <td>{organsData[data].name}</td>
-                                  <td>{organsData[data].organizationSize}</td>
-                                  <td>{organsData[data].description}</td>
-                                  <td className="text-center"><img onClick={() => {deleteOrg(data)}} src={deleteimg} alt="deleteimg" /></td>
-                                </tr>
-                              )
-                            })
-                          }
-                        </tbody>
-                      </table>
+                    {
+                      !isLoading ? (
+                        <table>
+                          <tbody>
+                            <tr>
+                              <th>Name</th>
+                              <th>Size of Organization Unit</th>
+                              <th>Description</th>
+                              <th>Delete Organization</th>
+                            </tr>
+                            {
+                              Object.keys(organsData).map((data, key) => {
+                                return (
+                                  <tr key={key}>
+                                    <td>{organsData[data].name}</td>
+                                    <td>{organsData[data].organizationSize}</td>
+                                    <td>{organsData[data].description}</td>
+                                    <td className="text-center"><img onClick={() => {deleteOrg(data)}} src={deleteimg} alt="deleteimg" /></td>
+                                  </tr>
+                                )
+                              })
+                            }
+                          </tbody>
+                        </table>
+                      )
+                      :
+                      (
+                        <div className="progress__loader">
+                          <CircularProgress />
+                        </div>
+                      )
+                    }
                     </div>
+                  </> 
+                    
                   :
                     <div className='homepage__maincontent__addemployees__users__notfound'>
                       <h2>Data not found</h2>

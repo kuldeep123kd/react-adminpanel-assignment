@@ -9,9 +9,21 @@ export const Store = props => {
   const [isLogout, setIsLogout] = React.useState(false);
   const [loginError, setLoginError] = React.useState(false);
   const [dataDelete, setDataDelete] = React.useState(false);
+  const [formSuccess, setFormSuccess] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [empData, setEmpData] = React.useState([]);
   const [rolData, setRolData] = React.useState([]);
   const [organsData, setOrgansData] = React.useState([]);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   const Auth = (email, password) => {
 
@@ -22,7 +34,6 @@ export const Store = props => {
     };
     Axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_API_KEY}`,authData)
       .then(response => {
-        console.log(response);
         if(response.status === 200) {
           localStorage.setItem("authToken", response.data.idToken);
           localStorage.setItem("expirationTime", response.data.expiresIn);
@@ -30,7 +41,6 @@ export const Store = props => {
         }
       })
       .catch(err => {
-        console.log(err.response);
         if(err.response.data.error.message === "EMAIL_NOT_FOUND") {
           setLoginError("Email not found.");
         } 
@@ -58,10 +68,14 @@ export const Store = props => {
     if(token) {
       Axios.post(`${process.env.REACT_APP_DATABASEURL}/employees.json?auth=` + token, employeesData)
       .then(res => {
-        console.log(res);
+        setFormSuccess(true);
       })
       .catch(err => {
-        console.log(err.response);
+        if (err.response.status === 401) {
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
+        }
       })
     }
   }
@@ -74,12 +88,15 @@ export const Store = props => {
           if (res.status === 200) {
             const data = res.data;
             setEmpData(data);
+            setIsLoading(false);
           }
       })
       .catch(err => {
-        console.log(err.response);
         if (err.response.status === 401) {
-          // DeleteToken();
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
+          setIsLoading(false);
         }
       })
     }
@@ -94,10 +111,14 @@ export const Store = props => {
     if(token) {
       Axios.post(`${process.env.REACT_APP_DATABASEURL}/roles.json?auth=` + token, rolesData)
       .then(res => {
-        console.log(res);
+        setFormSuccess(true);
       })
       .catch(err => {
-        console.log(err.response);
+        if (err.response.status === 401) {
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
+        }
       })
     }
   }
@@ -110,10 +131,15 @@ export const Store = props => {
         if (res.status === 200) {
           const data = res.data;
           setRolData(data);
+          setIsLoading(false);
         }
       })
       .catch(err => {
-        console.log(err.response);
+        if (err.response.status === 401) {
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
+        }
       })
     }
   }
@@ -128,10 +154,14 @@ export const Store = props => {
     if(token) {
       Axios.post(`${process.env.REACT_APP_DATABASEURL}/organizations.json?auth=` + token, organizationData)
       .then(res => {
-        console.log(res);
+        setFormSuccess(true);
       })
       .catch(err => {
-        console.log(err.response);
+        if (err.response.status === 401) {
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
+        }
       })
     }
   }
@@ -144,10 +174,15 @@ export const Store = props => {
         if (res.status === 200) {
           const data = res.data;
           setOrgansData(data);
+          setIsLoading(false);
         }
       })
       .catch(err => {
-        console.log(err.response);
+        if (err.response.status === 401) {
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
+        }
       })
     }
   }
@@ -163,9 +198,10 @@ export const Store = props => {
           }
       })
       .catch(err => {
-        console.log(err.response);
         if (err.response.status === 401) {
-          // DeleteToken();
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
         }
       })
     }
@@ -182,9 +218,10 @@ export const Store = props => {
           }
       })
       .catch(err => {
-        console.log(err.response);
         if (err.response.status === 401) {
-          // DeleteToken();
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
         }
       })
     }
@@ -201,16 +238,27 @@ export const Store = props => {
           }
       })
       .catch(err => {
-        console.log(err.response);
         if (err.response.status === 401) {
-          // DeleteToken();
+          DeleteToken();
+          setIsLogout(true);
+          setIsAuthenticated(false);
         }
       })
     }
   }
 
   return (
-    <Context.Provider value={{Auth, setIsAuthenticated, isAuthenticated, DeleteToken, loginError, employeesSubmit, setIsLogout, isLogout, employeesData, empData, rolesSubmit, roleData, rolData, organizationSubmit, organizationData, organsData, employeesDelete, dataDelete, organizationDelete, rolesDelete, setDataDelete}}> 
+    <Context.Provider value={{
+        Auth, setIsAuthenticated, isAuthenticated, 
+        DeleteToken, loginError, employeesSubmit, 
+        setIsLogout, isLogout, employeesData, 
+        empData, rolesSubmit, roleData, rolData, 
+        organizationSubmit, organizationData, organsData, 
+        employeesDelete, dataDelete, organizationDelete, 
+        rolesDelete, setDataDelete, formSuccess, setFormSuccess,
+        setOpen, open, handleClose, handleToggle, setIsLoading,
+        isLoading
+      }}> 
       {props.children}
     </Context.Provider>
   );
