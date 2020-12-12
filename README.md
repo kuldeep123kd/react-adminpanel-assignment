@@ -52,16 +52,16 @@ Use demo credentials for login:
         `REACT_APP_APPID="APP_ID"`
 
 
-2. ### `npm install`
+8. ### `npm install`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It will install all the required packages.
 
-3. ### `npm start`
+9. ### `npm start`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs the app in the development mode.\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-4. ### `npm run build` or `GENERATE_SOURCEMAP=false npm run build`
+10. ### `npm run build` or `GENERATE_SOURCEMAP=false npm run build`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Builds the app for production to the `build` folder.\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It correctly bundles React in production mode and optimizes the build for the best performance.
