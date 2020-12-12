@@ -5,6 +5,7 @@ import { Context } from '../../shared/store/Context';
 import '../Home.scss';
 import Sidebar from '../Sidebar';
 import InnerNavbar from '../InnerNavbar';
+import Alert from '@material-ui/lab/Alert';
 
 const initialState = {
   name: '',
@@ -18,7 +19,7 @@ const initialState = {
 
 const AddOrganization = () => {
 
-  const {isLogout, organizationSubmit} = React.useContext(Context);
+  const {isLogout, organizationSubmit, setFormSuccess, formSuccess} = React.useContext(Context);
 
   const [addOrganization, setAddOrganization] = React.useState(initialState);
 
@@ -51,6 +52,10 @@ const AddOrganization = () => {
     const isValid = formValidation();
     if(isValid) {
       organizationSubmit(addOrganization.name, addOrganization.organizationSize, addOrganization.description);
+      setTimeout(() => {
+        setFormSuccess(false);
+        setAddOrganization({...addOrganization,...initialState});
+      }, 3000);
     }
   }
 
@@ -65,6 +70,7 @@ const AddOrganization = () => {
           <div className="homepage__maincontent__addemployees"> 
             <div>
               <div className="homepage__maincontent__addemployees__heading">
+                {formSuccess && <Alert severity="success">Organization added successfully.</Alert>}
                 <h2>Add Organizational Unit</h2>
               </div>
               <form onSubmit={formSubmit} className="homepage__maincontent__addemployees__form">

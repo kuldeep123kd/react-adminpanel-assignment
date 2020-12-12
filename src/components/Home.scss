@@ -17,6 +17,7 @@
 }
 
 .homepage__sidebar__content {
+  overflow: auto;
   h1 {
     margin: 0;
     font-size: 1.0625rem;
@@ -30,13 +31,12 @@
   background-color: #007bff;
 }
 
-.homepage__sidebar__logo,
-.header__padding {
+.homepage__sidebar__logo {
   padding: 10px 15px;
 }
 
 .header__padding {
-  padding-bottom: 12px;
+  padding: 16px 15px;
 }
 
 .homepage__sidebar {
@@ -84,6 +84,34 @@
   margin-left: 256px;
 }
 
+.homepage__sidebar__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1;
+  transition: 0.2s;
+}
+
+.homepage__sidebar,
+.homepage__maincontent {
+  transition: 0.3s;
+}
+
+.homepage__sidebar {
+  z-index: 2;
+}
+
+.sidebar__close span {
+  display: none;
+  color: #FFFFFF;
+  font-size: 1.325rem;
+  cursor: pointer;
+}
+
 .homepage__maincontent__addemployees__form {
   max-width: 300px;
   margin: auto;
@@ -94,4 +122,73 @@
 }
 .homepage__maincontent__addemployees__form__inputs {
   margin: 20px 0;
+}
+
+.header__navbar__menu--btn {
+  position: relative;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
+  border: 0;
+  height: 25px;
+}
+.header__navbar__menu--btn__icon {
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(255,101,47,.2);
+  transition: all .5s ease-in-out;
+}
+.header__navbar__menu--btn__icon::before,
+.header__navbar__menu--btn__icon::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(255,101,47,.2);
+  transition: all .5s ease-in-out;
+}
+.header__navbar__menu--btn__icon::before {
+  transform: translateY(-10px);
+}
+.header__navbar__menu--btn__icon::after {
+  transform: translateY(10px);
+}
+/* ANIMATION */
+.header__navbar__menu--btn.open .header__navbar__menu--btn__icon {
+  transform: translateX(-50px);
+  background: transparent;
+  box-shadow: none;
+}
+.header__navbar__menu--btn.open .header__navbar__menu--btn__icon::before {
+  transform: rotate(45deg) translate(35px, -35px);
+}
+.header__navbar__menu--btn.open .header__navbar__menu--btn__icon::after {
+  transform: rotate(-45deg) translate(35px, 35px);
+}
+
+@media screen and (max-width: 767px) {
+  .homepage__maincontent {
+    margin-left: 0;
+  }
+  .homepage__sidebar__inactive {
+    left: -256px;
+  }
+  .homepage__sidebar__active {
+    left: 0;
+  }
+  .header__navbar__menu--btn {
+    display: flex;
+  }
+  .sidebar__close span {
+    display: block;
+  }
+  .homepage__maincontent__addemployees__form {
+    padding: 0 15px;
+  }
 }

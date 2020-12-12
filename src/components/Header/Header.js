@@ -1,5 +1,4 @@
 import React from 'react';
-import { Context } from '../../shared/store/Context';
 import './Header.scss';
 
 const Header = () => {
