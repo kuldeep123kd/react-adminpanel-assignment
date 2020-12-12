@@ -3,7 +3,7 @@
 Live Website link: [https://reactadminpanel.000webhostapp.com](https://reactadminpanel.000webhostapp.com)
 
 Use demo credentials for login:
-### Email `test@admin.com`
+### Email `admin@admin.com`
 ### Password `admin@123`
 
 
