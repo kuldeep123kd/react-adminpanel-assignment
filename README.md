@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# React Admin Panel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Website link: [https://reactadminpanel.000webhostapp.com](https://reactadminpanel.000webhostapp.com)
 
-## Available Scripts
+Use demo credentials for login:
+### Email `test@admin.com`
+### Password `admin@123`
 
-In the project directory, you can run:
 
-### `npm start`
+## Localhost setup:
+1. ### Firebase Setup:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  1. Create account on firebase and login to firebase console.
+  2. Choose database as Realtime Database.
+  3. In rules tab edit rules replace below given rules with already given:\
+      `{`\
+        &nbsp;&nbsp;&nbsp;&nbsp;`"rules": {`\
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`"employees": {`\
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`".read": "auth != null",`\
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`".write": "auth != null"`\
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`},`\
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`"roles": {`\
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`".read": "auth != null",`\
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`".write": "auth != null"`\
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`},`\
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`"organizations": {`\
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`".read": "auth != null",`\
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`".write": "auth != null"`\
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`},`\
+        &nbsp;&nbsp;&nbsp;&nbsp;`}`\
+      `}`
+  4. Enable Authentication in Authentication Panel (Email/Password).
+  5. Create a user (Note these credentials later on used for login in web app);
+  6. Now Create web app and copy all the keys like given below: \
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+        `apiKey: "API_KEY",`\
+        `authDomain: "PROJECT_ID.firebaseapp.com",`\
+        `databaseURL: "https://PROJECT_ID.firebaseio.com",`\
+        `projectId: "PROJECT_ID",`\
+        `storageBucket: "PROJECT_ID.appspot.com",`\
+        `messagingSenderId: "SENDER_ID",`\
+        `appId: "APP_ID",`
 
-### `npm test`
+  7. Now replace all the above given values in the .env file on your localhost in your project directory:\
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+        `REACT_APP_API_KEY="API_KEY"`\
+        `REACT_APP_AUTH_DOMAIN="PROJECT_ID.firebaseapp.com"`\
+        `REACT_APP_DATABASEURL="https://PROJECT_ID.firebaseio.com"`\
+        `REACT_APP_PROJECTID="PROJECT_ID"`\
+        `REACT_APP_STORAGE_BUCKET="PROJECT_ID.appspot.com"`\
+        `REACT_APP_MESSAGE_SENDERID="SENDER_ID"`\
+        `REACT_APP_APPID="APP_ID"`
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. ### `npm install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It will install all the required packages.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. ### `npm start`
 
-### `npm run eject`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs the app in the development mode.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. ### `npm run build` or `GENERATE_SOURCEMAP=false npm run build`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Builds the app for production to the `build` folder.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The build is minified and the filenames include the hashes.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your app is ready to be deployed!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Firebase setup official link : [https://firebase.google.com/docs/web/setup](https://firebase.google.com/docs/web/setup)
