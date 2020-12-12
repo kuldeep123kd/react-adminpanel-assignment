@@ -8,7 +8,7 @@ Use demo credentials for login:
 
 
 ## Localhost setup:
-1. ### Firebase Setup:
+#### Firebase Setup:
 
   1. Create account on firebase and login to firebase console.
   2. Choose database as Realtime Database.
