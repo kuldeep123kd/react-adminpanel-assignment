@@ -41,10 +41,10 @@ export const Store = props => {
         }
       })
       .catch(err => {
-        if(err.response.data.error.message === "EMAIL_NOT_FOUND") {
+        if(err.response?.data.error.message === "EMAIL_NOT_FOUND") {
           setLoginError("Email not found.");
         } 
-        else if(err.response.data.error.message === "INVALID_PASSWORD") {
+        else if(err.response?.data.error.message === "INVALID_PASSWORD") {
           setLoginError("Invalid credentials entered");
         }
       });
@@ -71,7 +71,7 @@ export const Store = props => {
         setFormSuccess(true);
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -92,7 +92,7 @@ export const Store = props => {
           }
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -114,7 +114,7 @@ export const Store = props => {
         setFormSuccess(true);
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -135,7 +135,7 @@ export const Store = props => {
         }
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -157,7 +157,7 @@ export const Store = props => {
         setFormSuccess(true);
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -178,7 +178,7 @@ export const Store = props => {
         }
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -198,7 +198,7 @@ export const Store = props => {
           }
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -218,7 +218,7 @@ export const Store = props => {
           }
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
@@ -238,7 +238,7 @@ export const Store = props => {
           }
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response?.status === 401) {
           DeleteToken();
           setIsLogout(true);
           setIsAuthenticated(false);
